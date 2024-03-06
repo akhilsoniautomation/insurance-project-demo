@@ -1,9 +1,11 @@
 ---
-- hosts: test-server
+- name: configure test server
+  hosts: test-server
   become: true
+  
   tasks:
-  - name: update apt
-    command: sudo apt-get update
+  - name: update repo
+    command: sudo apt update
 
   - name: install docker
     command: sudo apt install -y docker.io
@@ -12,4 +14,4 @@
     command: sudo systemctl start docker
 
   - name: deploy insureme application
-    command: sudo docker run -itd -p 8081:8081 --name insure-me shubhamkushwah123/insure-me:1.0
+    command: sudo docker run -itd -p 8081:8081 docker9239/insure-me-app:1.0
